@@ -1,36 +1,204 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Core Logística – Next.js + TypeScript (MVC)
 
-## Getting Started
+## Descripción del Proyecto
 
-First, run the development server:
+Este proyecto corresponde al desarrollo de un Mini Core para una empresa de logística, implementado utilizando Next.js, TypeScript, Prisma y SQLite bajo una arquitectura basada en el patrón MVC (Model – View – Controller).
+
+La aplicación permite consultar los envíos realizados dentro de un rango de fechas específico y calcular el costo total generado por cada repartidor, considerando el peso de los paquetes y la tarifa por kilogramo asociada a cada zona de entrega.
+
+---
+
+## Objetivo
+
+Calcular el costo total de los envíos realizados por cada repartidor dentro de un período determinado, aplicando la tarifa correspondiente según la zona de entrega de cada envío.
+
+---
+
+## Tecnologías Utilizadas
+
+* Next.js 16
+* TypeScript
+* Prisma ORM
+* SQLite
+* Tailwind CSS
+* React
+
+---
+
+## Arquitectura MVC
+
+### Model
+
+Ubicación:
+
+```text
+src/models/shippingModel.ts
+```
+
+Responsable de realizar las consultas a la base de datos mediante Prisma.
+
+---
+
+### Service
+
+Ubicación:
+
+```text
+src/services/shippingService.ts
+```
+
+Contiene la lógica de negocio para calcular el costo total de los envíos por repartidor.
+
+---
+
+### Controller
+
+Ubicación:
+
+```text
+src/app/api/report/route.ts
+```
+
+Recibe las solicitudes desde la interfaz, procesa los datos y retorna la información calculada.
+
+---
+
+### View
+
+Ubicación:
+
+```text
+src/app/page.tsx
+```
+
+Interfaz gráfica donde el usuario selecciona el rango de fechas y visualiza los resultados.
+
+---
+
+## Modelo de Datos
+
+La aplicación utiliza tres entidades principales:
+
+### Repartidor
+
+* id_repartidor
+* nombre
+* email
+
+### Zona
+
+* id_zona
+* nombre_zona
+* tarifa_por_kg
+
+### Envío
+
+* id_envio
+* id_repartidor
+* id_zona
+* peso_kg
+* fecha_envio
+
+---
+
+## Funcionalidades Implementadas
+
+* Consulta de envíos por rango de fechas.
+* Cálculo de costos por repartidor.
+* Agrupación de resultados.
+* Visualización de zonas involucradas.
+* Visualización de tarifas aplicadas.
+* Cálculo automático del costo total.
+* Interfaz web responsiva.
+
+---
+
+## Instalación del Proyecto
+
+### Clonar repositorio
+
+```bash
+git clone https://github.com/ashleesoledispa/mini-core-web.git
+```
+
+### Ingresar al proyecto
+
+```bash
+cd mini-core-logistica
+```
+
+### Instalar dependencias
+
+```bash
+npm install
+```
+
+### Ejecutar migraciones
+
+```bash
+npx prisma migrate dev
+```
+
+### Ejecutar datos de prueba (Seed)
+
+```bash
+npx prisma db seed
+```
+
+### Ejecutar el proyecto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Video Explicativo
 
-To learn more about Next.js, take a look at the following resources:
+Video donde se explica la estructura MVC, el desarrollo del proyecto y su funcionamiento:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+https://youtu.be/So-37wuqhFQ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Documentación Oficial
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://nextjs.org/docs
+
+Prisma:
+
+https://www.prisma.io/docs
+
+TypeScript:
+
+https://www.typescriptlang.org/docs/
+
+---
+
+## Tutoriales de Referencia
+
+Next.js Full Tutorial:
+
+https://www.youtube.com/watch?v=k7o9R6eaSes
+
+Next.js App Router Tutorial:
+
+https://www.youtube.com/watch?v=ZVnjOPwW4ZA
+
+---
+
+## Autor
+
+Ashlee Soledispa Villamar
+
+Universidad de Las Américas (UDLA)
+
+Ingeniería Web
